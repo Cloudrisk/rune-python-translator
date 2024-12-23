@@ -1,0 +1,104 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.finos.runedsl</groupId>
+    <artifactId>RunPythonTranslator</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.enforced.version>[17,18)</java.enforced.version>
+        <maven.compiler.release>11</maven.compiler.release>
+        <apache.commons.lang.version>3.13.0</apache.commons.lang.version>
+        <apache.commons.text.version>1.11.0</apache.commons.text.version>
+        <commons-io.version>2.11.0</commons-io.version>
+        <guava.version>32.0.1-jre</guava.version>
+        <rosetta.dsl.version>9.22.1</rosetta.dsl.version>
+        <rosetta.bundle.version>11.27.2</rosetta.bundle.version>
+        <rosetta.code-gen.version>0.0.0.main-SNAPSHOT</rosetta.code-gen.version>
+        <xtext.version>2.27.0</xtext.version>
+    </properties>
+
+    <dependencies>
+        <!-- Rosetta Rune START -->
+        <dependency>
+            <groupId>com.regnosys</groupId>
+            <artifactId>rosetta-common</artifactId>
+            <version>11.31.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.regnosys.rosetta</groupId>
+            <artifactId>com.regnosys.rosetta</artifactId>
+            <version>${rosetta.dsl.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.regnosys.rosetta.code-generators</groupId>
+            <artifactId>python</artifactId>
+            <version>${rosetta.code-gen.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.regnosys.rosetta</groupId>
+            <artifactId>com.regnosys.rosetta.lib</artifactId>
+            <version>${rosetta.dsl.version}</version>
+        </dependency>
+        <!-- Rosetta Rune END -->
+        <dependency>
+            <groupId>commons-cli</groupId>
+            <artifactId>commons-cli</artifactId>
+            <version>1.9.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>13.0</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.eclipse.xtend</groupId>
+                <artifactId>xtend-maven-plugin</artifactId>
+                <version>${xtext.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>testCompile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+<!--
+                <configuration>
+                    <source>16</source>
+                    <target>16</target>
+                </configuration>
+-->
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version> <!-- Check for the latest version -->
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Other plugins -->
+        </plugins>
+    </build>            
+</project>
