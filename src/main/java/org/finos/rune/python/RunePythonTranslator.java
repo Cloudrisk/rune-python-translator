@@ -51,7 +51,12 @@ public class RunePythonTranslator {
      * translate Rune to Python
      * required arguments - either a source directory or a source file
      * output defaults to the current directory if not specified
-     *  mvn compile exec:java -Dexec.mainClass="org.finos.rune.python.RunePythonTranslator"
+     *  to build:
+     *      mvn clean package
+     *  to run:
+     *      java -jar target/rune-python-translator-1.0-SNAPSHOT.jar [options]
+     *  or (may not work)
+     *      mvn compile exec:java -Dexec.mainClass="org.finos.rune.python.RunePythonTranslator" [options]
      */
     public static void main(String[] args) {
         Options options   = new Options();
@@ -230,6 +235,7 @@ public class RunePythonTranslator {
                 e.printStackTrace();
             }
         }
+        System.out.println("RunePythonTranslator ... wrote: " + generatedPython.size() + " files to: " + tgtDir);
     }
 
     static class PythonModelLoader {
