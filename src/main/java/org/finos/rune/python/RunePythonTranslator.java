@@ -12,9 +12,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.List;
-
 import org.apache.commons.cli.*;
-
 import com.google.inject.Binder;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -31,10 +29,8 @@ import com.regnosys.rosetta.generator.external.ExternalGenerators;
 import com.regnosys.rosetta.generator.python.PythonCodeGenerator;
 import com.regnosys.rosetta.rosetta.RosettaModel;
 import org.jetbrains.annotations.NotNull;
-
 import javax.inject.Inject;
 import javax.inject.Provider;
-
 
 /**
  * Rune to Python translator using the generator specified in the POM
@@ -51,12 +47,11 @@ import javax.inject.Provider;
  *
  */
 public class RunePythonTranslator {
-    //  mvn compile exec:java -Dexec.mainClass="org.finos.rune.python.RunePythonTranslator"
-
     /**
      * translate Rune to Python
      * required arguments - either a source directory or a source file
      * output defaults to the current directory if not specified
+     *  mvn compile exec:java -Dexec.mainClass="org.finos.rune.python.RunePythonTranslator"
      */
     public static void main(String[] args) {
         Options options   = new Options();
@@ -244,7 +239,7 @@ public class RunePythonTranslator {
         public List<RosettaModel> rosettaModels(List<Path> statics, List<Path> rosetta) {
             ResourceSet resourceSet = this.resourceSetProvider.get();
             return Stream.concat(statics.stream(),
-                            rosetta.stream())
+                rosetta.stream())
                     .map(UrlUtils::toUrl)
                     .map(org.finos.rune.python.RunePythonTranslator.PythonModelLoader::url)
                     .map((f) -> getResource(resourceSet, f))
